@@ -1,46 +1,105 @@
-import React from 'react'
-
+import React from "react";
+import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg custom-nav px-4">
+      <nav
+        className="navbar navbar-expand-lg px-4 py-3"
+        style={{
+          background: "rgba(10,10,10,0.95)",
+          backdropFilter: "blur(10px)",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+        }}
+      >
         <div className="container-fluid">
           
           {/* Logo */}
-          <a className="navbar-brand logo" href="#">
-            🎬 MovieHub
+          <a
+            className="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2"
+            href="#"
+            style={{
+              color: "#fff",
+              letterSpacing: "1px",
+            }}
+          >
+            <span style={{ fontSize: "2rem" }}>🎬</span>
+
+            <span
+              style={{
+                background: "linear-gradient(90deg,#ff4d4d,#ffcc00)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              MovieHub
+            </span>
           </a>
 
-          {/* Toggle button (mobile) */}
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          {/* Toggle Button */}
+          <button
+            className="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* Menu */}
+          {/* Navbar Content */}
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <a className="nav-link active" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Movies</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Series</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Trending</a>
-              </li>
+
+            {/* Nav Links */}
+            <ul className="navbar-nav mx-auto gap-lg-3 text-center">
+              {["Home", "Movies", "Series", "Trending", "New Releases"].map(
+                (item, index) => (
+                  <li className="nav-item" key={index}>
+                    <a
+                      className={`nav-link ${
+                        item === "Home" ? "active" : ""
+                      }`}
+                      href="#"
+                      style={{
+                        color: "#ddd",
+                        fontWeight: "500",
+                        transition: "0.3s",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.target.style.color = "#ff4d4d")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.color = "#ddd")
+                      }
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
 
-            {/* Search */}
-            <form className="d-flex ms-3">
-              <input className="form-control me-2" type="search" placeholder="Search movies..." />
-              <button className="btn btn-danger">Search</button>
-            </form>
+            {/* Right Side */}
+            <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0 flex-wrap">
+
+
+      
+
+              {/* Login Button */}
+              <Link to="/login" className="btn btn-outline-light rounded-pill px-4">
+                Login
+              </Link>
+
+              {/* Register Button */}
+               
+            <Link to="/register" className="btn btn-outline-light rounded-pill px-4">
+                Register
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
     </>
-  )
+  );
 }

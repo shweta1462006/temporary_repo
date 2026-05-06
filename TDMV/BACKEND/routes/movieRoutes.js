@@ -1,5 +1,9 @@
-const express = require("express");
-import { HomePage, PopularMovies } from "../controller/movieController.js";
-const router = express.Router();
-router.get("/",HomePage)
-router.get("/popular",PopularMovies)
+const express = require('express')
+const movieRouter = express.Router()
+const { HomePage, PopularMovies } = require("../controller/movieController.js");
+// const {HomePage,} =require("../controller/movieController.js")
+
+movieRouter.get("/home",HomePage);
+movieRouter.get("/popular",PopularMovies);
+
+module.exports = movieRouter;

@@ -4,14 +4,14 @@ import axios from "axios";
 export default function Home() {
   const [data, setData] = useState([]);
   let api = axios.create({
-    baseURL:"http://localhost:3000"
+    baseURL:"https://turbo-space-pancake-wr4r5px97w7pc5qwg-3000.app.github.dev"
   })
 
   // FETCH MOVIES
   useEffect(() => {
     api.get("/popular")
       .then((res) => {
-        console.log("dataaaa",res.data);
+        console.log("dataaaa",res);
 
         // Ensure results exists
         setData(res.data || []);
@@ -23,7 +23,6 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO CAROUSEL */}
       <div
         id="movieCarousel"
         className="carousel slide carousel-fade"
@@ -78,7 +77,6 @@ export default function Home() {
           )}
         </div>
 
-        {/* CONTROLS */}
         <button
           className="carousel-control-prev"
           type="button"
@@ -98,40 +96,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* TRENDING MOVIES */}
-      <div className="container my-5">
-        <h2 className=" mb-4">
-          🔥 Trending Movies
-        </h2>
-
-        <div className="row g-4">
-          {data.map((movie) => (
-            <div className="col-md-3" key={movie.id}>
-              <div className="card bg-dark text-white border-0 shadow movie-card h-100">
-                <img
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                      : "https://via.placeholder.com/500x750"
-                  }
-                  className="card-img-top movie-card-img"
-                  alt={movie.title}
-                />
-
-                <div className="card-body">
-                  <h5 className="card-title">
-                    {movie.title}
-                  </h5>
-
-                  <p className="small text-secondary">
-                    ⭐ {movie.vote_average}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </>
 
   )
