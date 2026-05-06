@@ -1,6 +1,13 @@
+const cors  = require("cors")
 const express = require("express");
-const port = 3000;
+const { HomePage, PopularMovies } = require("./controller/movieController");
 const app = express();
-app.listen(()=>{
-    console.log("running on port number 3000")
-})
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors({ origin: "*" }));
+
+app.use("/home",HomePage)
+app.use("/popular",PopularMovies)
+
+module.exports = app;
