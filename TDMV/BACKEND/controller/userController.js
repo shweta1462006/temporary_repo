@@ -1,5 +1,10 @@
+const {readJSON,writeJSON}  = require("../utils/fileHandler.js");
+const USER_PATH = "./data/users.json";
+
+
+
 const login =(req,res)=>{
-    console.log(res.res("welcome to login page"))
+res.send("welcome to login page")
 }
 
 const register =(req,res)=>{
