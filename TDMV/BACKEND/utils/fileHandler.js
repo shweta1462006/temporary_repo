@@ -10,4 +10,4 @@ const fs = require('fs')
   fs.writeFileSync(path, JSON.stringify(data, null, 2));
 };
 
-module.exports = {readJSON}
+module.exports = {readJSON,writeJSON};
